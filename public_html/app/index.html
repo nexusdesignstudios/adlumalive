@@ -70,8 +70,11 @@
                  };
 
                  setupRedirect('About', '/about.html');
-                 setupRedirect('Services', '/services.html');
-                 removeElement('Work');
+                setupRedirect('Services', '/services.html');
+                setupRedirect('Start a Project', '/contact.html');
+                setupRedirect('Contact', '/contact.html');
+                setupRedirect("Let's Talk", '/contact.html');
+                removeElement('Work');
             };
 
             handleRedirects();
