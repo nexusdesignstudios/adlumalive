@@ -15,6 +15,7 @@ class ProjectSeeder extends Seeder
             'image_url' => 'https://via.placeholder.com/600x400',
             'link' => 'https://example.com/alpha',
             'category' => 'Web Development',
+            'is_featured' => true,
         ]);
 
         Project::create([
@@ -23,6 +24,7 @@ class ProjectSeeder extends Seeder
             'image_url' => 'https://via.placeholder.com/600x400',
             'link' => 'https://example.com/beta',
             'category' => 'Branding',
+            'is_featured' => false,
         ]);
 
         Project::create([
@@ -31,6 +33,7 @@ class ProjectSeeder extends Seeder
             'image_url' => 'https://via.placeholder.com/600x400',
             'link' => 'https://example.com/gamma',
             'category' => 'Marketing',
+            'is_featured' => true,
         ]);
     }
 }

@@ -215,6 +215,10 @@
                         <input type="url" name="link" value="${project?.link || ''}" 
                                class="w-full bg-black/20 border border-white/10 rounded px-3 py-2 text-white focus:border-blue-500 outline-none">
                     </div>
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" name="is_featured" id="is_featured" value="1" ${project?.is_featured ? 'checked' : ''} class="w-4 h-4 rounded border-white/10 bg-black/20 text-blue-600 focus:ring-blue-500">
+                        <label for="is_featured" class="text-sm text-gray-400">Featured Project</label>
+                    </div>
                     <div class="flex justify-end gap-3 mt-6">
                         <button type="button" id="cancel-btn" class="px-4 py-2 text-gray-400 hover:text-white">Cancel</button>
                         <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Save Project</button>
@@ -228,6 +232,12 @@
         container.querySelector('#project-form').onsubmit = async (e) => {
             e.preventDefault();
             const formData = new FormData(e.target);
+            // Handle checkbox value
+            if (!formData.has('is_featured')) {
+                formData.append('is_featured', '0');
+            } else {
+                formData.set('is_featured', '1');
+            }
             const data = Object.fromEntries(formData.entries());
             
             const url = isEdit ? `/api/projects/${project.id}` : '/api/projects';

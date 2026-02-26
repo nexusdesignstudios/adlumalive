@@ -11,9 +11,15 @@ class ProjectController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response()->json(Project::all());
+        $query = Project::query();
+
+        if ($request->has('featured') && $request->featured === 'true') {
+            $query->where('is_featured', true);
+        }
+
+        return response()->json($query->get());
     }
 
     /**
@@ -27,6 +33,7 @@ class ProjectController extends Controller
             'image_url' => 'nullable|url',
             'link' => 'nullable|url',
             'category' => 'nullable|string|max:255',
+            'is_featured' => 'boolean',
         ]);
 
         $project = Project::create($data);
@@ -52,6 +59,7 @@ class ProjectController extends Controller
             'image_url' => 'nullable|url',
             'link' => 'nullable|url',
             'category' => 'nullable|string|max:255',
+            'is_featured' => 'boolean',
         ]);
 
         $project->update($data);

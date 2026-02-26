@@ -27,8 +27,8 @@ async function updateProjects() {
 
         const section = await waitForContainer();
         
-        // Fetch projects from API
-        const response = await fetch('/api/projects');
+        // Fetch projects from API (Only Featured)
+        const response = await fetch('/api/projects?featured=true');
         if (!response.ok) throw new Error('Failed to fetch projects');
         const projects = await response.json();
 
