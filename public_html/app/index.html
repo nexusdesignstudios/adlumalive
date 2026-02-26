@@ -49,8 +49,29 @@
                      }
                  };
 
+                 const removeElement = (text) => {
+                     const upperText = text.toUpperCase();
+                     
+                     // Buttons
+                     const buttons = Array.from(document.querySelectorAll('button'));
+                     const targetBtn = buttons.find(b => b.textContent.trim().toUpperCase() === upperText || b.textContent.trim() === text);
+                     
+                     if (targetBtn) {
+                         targetBtn.remove();
+                     }
+                     
+                     // Links
+                     const links = Array.from(document.querySelectorAll('a'));
+                     const targetLink = links.find(l => l.textContent.trim().toUpperCase() === upperText || l.textContent.trim() === text);
+                     
+                     if (targetLink) {
+                         targetLink.remove();
+                     }
+                 };
+
                  setupRedirect('About', '/about.html');
                  setupRedirect('Services', '/services.html');
+                 removeElement('Work');
             };
 
             handleRedirects();
