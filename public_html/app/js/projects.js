@@ -41,6 +41,13 @@ async function updateProjects() {
         // Look for a grid container inside the section
         let grid = section.querySelector('.grid');
         
+        // Check if this grid is the "bad" design div (grid-cols-5)
+        if (grid && grid.className.includes('grid-cols-5')) {
+            // It's the bad design div, let's remove it and create a fresh one
+            grid.remove();
+            grid = null;
+        }
+
         if (!grid) {
             // If no grid found, maybe the section *is* the container?
             // Or create one
@@ -50,6 +57,8 @@ async function updateProjects() {
         } else {
             // Clear existing static projects
             grid.innerHTML = '';
+            // Ensure correct classes
+            grid.className = 'grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12';
         }
 
         // Render projects
